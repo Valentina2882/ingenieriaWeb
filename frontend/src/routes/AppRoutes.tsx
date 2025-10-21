@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "../components/Layout";
-
+import { Protected } from '../services/Protected';
 // Views
 import HomePage from "../views/HomePage";
 import ThreeDemoView from "../views/ThreeDemoView";
@@ -13,6 +13,10 @@ import ConversorUnid from "../views/ConversorUnid";
 import ValidContrasena from "../views/ValidContrasena";
 import ContadorClics from "../views/ContadorClics";
 import ListaTareas from "../views/ListaTareas";
+import LoginView from '../views/LoginView';
+import ProductsView from '../views/ProductsView';
+import ProfileView from '../views/ProfileView';
+import CategoriesView from "../views/CategoriesView";
 
 export default function AppRoutes() {
   return (
@@ -29,6 +33,23 @@ export default function AppRoutes() {
         <Route path="validcontrasena" element={<ValidContrasena />} />
         <Route path="contadorclics" element={<ContadorClics />} />
         <Route path="listareas" element={<ListaTareas />} />
+        <Route path="api/login" element={<LoginView />} />
+        
+        <Route path="api/categories" element={
+          <Protected>
+            <CategoriesView />
+          </Protected>
+        } />
+        <Route path="api/profile" element={
+          <Protected>
+            <ProfileView />
+          </Protected>
+        } />
+        <Route path="api/products" element={
+          <Protected>
+            <ProductsView />
+          </Protected>
+        } />
       </Route>
     </Routes>
   );

@@ -13,12 +13,13 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "framer-motion": "^12.23.12",
     "lil-gui": "^0.20.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.8.2",
+    "react-router-dom": "^7.9.4",
     "three": "^0.179.1"
   },
   "devDependencies": {
@@ -28,8 +29,8 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
-    "@types/react": "^19.1.12",
-    "@types/react-dom": "^19.1.9",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
     "@types/three": "^0.179.0",
     "@typescript-eslint/eslint-plugin": "^8.11.0",
     "@typescript-eslint/parser": "^8.11.0",
