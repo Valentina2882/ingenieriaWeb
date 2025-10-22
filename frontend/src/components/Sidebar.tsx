@@ -26,6 +26,7 @@ const exerciseItems: SidebarItem[] = [
   { label: "Productos (API)", route: "/api/products", icon: <FaShoppingCart /> },
   { label: "Categorías (API)", route: "/api/categories", icon: <FaList /> },
   { label: "Perfil (API)", route: "/api/profile", icon: <FaUser /> },
+  { label: "Órdenes (API)", route: "/api/orders", icon: <FaShoppingCart /> },
 ];
 
 export default function Sidebar() {

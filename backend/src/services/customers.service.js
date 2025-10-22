@@ -22,19 +22,26 @@ class CustomerService {
   }
 
   async create(data) {
-    const hash = await bcrypt.hash(data.user.password, 10);
-    const newData = {
-      ...data,
-      user: {
-        ...data.user,
-        password: hash
+    // Si viene con user data, crear usuario también
+    if (data.user) {
+      const hash = await bcrypt.hash(data.user.password, 10);
+      const newData = {
+        ...data,
+        user: {
+          ...data.user,
+          password: hash
+        }
       }
+      const newCustomer = await models.Customer.create(newData, {
+        include: ['user']
+      });
+      delete newCustomer.dataValues.user.dataValues.password;
+      return newCustomer;
+    } else {
+      // Si solo viene customer data, crear solo customer
+      const newCustomer = await models.Customer.create(data);
+      return newCustomer;
     }
-    const newCustomer = await models.Customer.create(newData, {
-      include: ['user']
-    });
-    delete newCustomer.dataValues.user.dataValues.password;
-    return newCustomer;
   }
 
   async update(id, changes) {

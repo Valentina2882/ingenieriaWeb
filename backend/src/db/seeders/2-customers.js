@@ -13,6 +13,13 @@ module.exports = {
         user_id: 2,
         created_at: new Date()
       },
+      {
+        name: 'Admin',
+        last_name: 'User',
+        phone: '1234567',
+        user_id: 1,
+        created_at: new Date()
+      },
     ]);
   },
   down: (queryInterface) => {

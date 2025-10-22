@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "../components/Layout";
-import { Protected } from '../services/Protected';
+import { Protected } from './Protected';
 // Views
 import HomePage from "../views/HomePage";
 import ThreeDemoView from "../views/ThreeDemoView";
@@ -17,6 +17,7 @@ import LoginView from '../views/LoginView';
 import ProductsView from '../views/ProductsView';
 import ProfileView from '../views/ProfileView';
 import CategoriesView from "../views/CategoriesView";
+import OrdersView from "../views/OrdersView";
 
 export default function AppRoutes() {
   return (
@@ -48,6 +49,11 @@ export default function AppRoutes() {
         <Route path="api/products" element={
           <Protected>
             <ProductsView />
+          </Protected>
+        } />
+        <Route path="api/orders" element={
+          <Protected>
+            <OrdersView />
           </Protected>
         } />
       </Route>

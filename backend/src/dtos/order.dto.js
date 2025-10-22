@@ -14,10 +14,20 @@ const createOrderDto = Joi.object({
   customerId: customerId.required(),
 });
 
+const createOrderWithProductsDto = Joi.object({
+  customerId: customerId.required(),
+  products: Joi.array().items(
+    Joi.object({
+      productId: productId.required(),
+      amount: amount.required()
+    })
+  ).optional()
+});
+
 const addItemDto = Joi.object({
   orderId: orderId.required(),
   productId: productId.required(),
   amount: amount.required(),
 });
 
-module.exports = { getOrderDto, createOrderDto, addItemDto };
+module.exports = { getOrderDto, createOrderDto, createOrderWithProductsDto, addItemDto };

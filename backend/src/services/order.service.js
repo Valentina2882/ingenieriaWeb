@@ -15,6 +15,35 @@ class OrderService {
     return newOrder;
   }
 
+  async createWithProducts(data) {
+    const customer = await models.Customer.findByPk(data.customerId);
+    if (!customer) {
+      throw boom.notFound('customer not found');
+    }
+    
+    // Crear la orden
+    const newOrder = await models.Order.create({ customerId: data.customerId });
+    
+    // Agregar productos si existen
+    if (data.products && data.products.length > 0) {
+      for (const product of data.products) {
+        const productExists = await models.Product.findByPk(product.productId);
+        if (!productExists) {
+          throw boom.notFound(`product with id ${product.productId} not found`);
+        }
+        
+        await models.OrderProduct.create({
+          orderId: newOrder.id,
+          productId: product.productId,
+          amount: product.amount
+        });
+      }
+    }
+    
+    // Retornar la orden con sus productos
+    return await this.findOne(newOrder.id);
+  }
+
   async addItem(data) {
     const product = await models.Product.findByPk(data.productId);
     if (!product) {
@@ -37,7 +66,8 @@ class OrderService {
         {
           association: 'customer',
           include: ['user']
-        }
+        },
+        'items'
       ]
     });
     return orders;

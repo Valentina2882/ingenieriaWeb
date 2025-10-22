@@ -37,8 +37,16 @@ export default function CategoriesView() {
           {error}
           <div className="mt-3">
             <strong>Credenciales de prueba:</strong>
-            <div>Email: <span className="font-mono">admin@mail.com</span></div>
-            <div>Password: <span className="font-mono">admin123</span></div>
+            <div className="mt-2">
+              <div className="font-semibold text-blue-600">👨‍💼 Administrador:</div>
+              <div>Email: <span className="font-mono">admin@mail.com</span></div>
+              <div>Password: <span className="font-mono">admin123</span></div>
+            </div>
+            <div className="mt-2">
+              <div className="font-semibold text-green-600">🛍️ Cliente:</div>
+              <div>Email: <span className="font-mono">customer@mail.com</span></div>
+              <div>Password: <span className="font-mono">customer123</span></div>
+            </div>
           </div>
         </div>
       )}

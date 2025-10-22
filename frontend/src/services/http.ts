@@ -13,6 +13,13 @@ export async function request(path: string, options?: {
     ...(options?.headers || {}),
   };
   if (options?.auth && token) headers.Authorization = `Bearer ${token}`;
+  
+  // Debug logging
+  if (options?.body) {
+    console.log('Request body:', options.body);
+    console.log('Stringified body:', JSON.stringify(options.body));
+  }
+  
   const res = await fetch(`${BASE_URL}${path}`, {
     method: options?.method || 'GET',
     headers,

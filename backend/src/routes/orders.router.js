@@ -1,10 +1,12 @@
 const express = require('express');
+const passport = require('passport');
 
 const OrderService = require('../services/order.service');
 const validatorHandler = require('../middlewares/validator.handler');
 const {
   getOrderDto,
   createOrderDto,
+  createOrderWithProductsDto,
   addItemDto,
 } = require('../dtos/order.dto');
 
@@ -13,6 +15,7 @@ const service = new OrderService();
 
 router.get(
   '/:id',
+  passport.authenticate('jwt', {session: false}),
   validatorHandler(getOrderDto, 'params'),
   async (req, res, next) => {
     try {
@@ -27,6 +30,7 @@ router.get(
 
 router.post(
   '/',
+  passport.authenticate('jwt', {session: false}),
   validatorHandler(createOrderDto, 'body'),
   async (req, res, next) => {
     try {
@@ -40,7 +44,23 @@ router.post(
 );
 
 router.post(
+  '/with-products',
+  passport.authenticate('jwt', {session: false}),
+  validatorHandler(createOrderWithProductsDto, 'body'),
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const newOrder = await service.createWithProducts(body);
+      res.status(201).json(newOrder);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.post(
   '/add-item',
+  passport.authenticate('jwt', {session: false}),
   validatorHandler(addItemDto, 'body'),
   async (req, res, next) => {
     try {

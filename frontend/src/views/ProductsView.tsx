@@ -60,7 +60,6 @@ export default function ProductsView() {
     setOrderLoading(true);
     setOrderMsg(null);
     try {
-      // Registrar orden: POST /orders, asume formato esperado: { products: [id, ...] }
       await request('/orders', { method: 'POST', body: { products: selected }, auth: true });
       setOrderMsg('¡Orden registrada correctamente!');
       setSelected([]);

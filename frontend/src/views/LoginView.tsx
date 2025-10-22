@@ -64,8 +64,16 @@ export default function LoginView() {
       </form>
       <div className="mt-6 p-2 text-xs bg-slate-100 dark:bg-slate-700 rounded text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600">
         <strong>Credenciales de prueba:</strong>
-        <div>Email: <span className="font-mono">admin@mail.com</span></div>
-        <div>Password: <span className="font-mono">admin123</span></div>
+        <div className="mt-2">
+          <div className="font-semibold text-blue-600 dark:text-blue-400">👨‍💼 Administrador:</div>
+          <div>Email: <span className="font-mono">admin@mail.com</span></div>
+          <div>Password: <span className="font-mono">admin123</span></div>
+        </div>
+        <div className="mt-2">
+          <div className="font-semibold text-green-600 dark:text-green-400">🛍️ Cliente:</div>
+          <div>Email: <span className="font-mono">customer@mail.com</span></div>
+          <div>Password: <span className="font-mono">customer123</span></div>
+        </div>
       </div>
     </div>
   );
